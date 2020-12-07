@@ -18,9 +18,11 @@ echo "Configuring NGINX Proxy with listen port: ${listen_port}, backend url: ${b
 cat << EOF > /etc/nginx/sites-available/default
 server {
   listen ${listen_port};
+  server_tokens off;
   ssl on;
   ssl_certificate /etc/nginx/cert.crt;
   ssl_certificate_key /etc/nginx/cert.key;
+  ssl_protocols TLSv1.2 TLSv1.3;
   location / {
     proxy_ssl_session_reuse on;
 
