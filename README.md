@@ -12,7 +12,9 @@ The following environment variables will customize the runtime:
 | CERT_SIZE    | rsa:2048              | Size of the proxy certificate        |
 | CERT_SUBJECT | /CN=localhost         | CN for the certificate               |
 | BACKEND_URL  | http://127.0.0.1:8080 | Backend URL to proxy connections     |
-| LISTEN_PORT  | 8443                  | Proxy listen port                    |
+| LISTEN_PORT   | 8443                 | Proxy listen port                    |
+| SERVER_TOKENS | off                  | header server information            |
+| SSL_PROTOCOLS | TLSv1.2 TLSv1.3      | TLS protocols active                 |
 
 ## Author
 

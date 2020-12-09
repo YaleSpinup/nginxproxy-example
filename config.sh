@@ -8,6 +8,8 @@ cert_size=${CERT_SIZE:-rsa:2048}
 cert_subject=${CERT_SUBJECT:-/CN=localhost}
 backend_url=${BACKEND_URL:-http://127.0.0.1:8080}
 listen_port=${LISTEN_PORT:-8443}
+server_tokens=${SERVER_TOKENS:-off}
+ssl_protocols=${SSL_PROTOCOLS:-"TLSv1.2 TLSv1.3"}
 
 echo "Generating SSL Certificate with expire: ${cert_expire}, size: ${cert_size}, subject: ${cert_subject}..."
 
@@ -18,11 +20,11 @@ echo "Configuring NGINX Proxy with listen port: ${listen_port}, backend url: ${b
 cat << EOF > /etc/nginx/sites-available/default
 server {
   listen ${listen_port};
-  server_tokens off;
+  server_tokens ${server_tokens};
   ssl on;
   ssl_certificate /etc/nginx/cert.crt;
   ssl_certificate_key /etc/nginx/cert.key;
-  ssl_protocols TLSv1.2 TLSv1.3;
+  ssl_protocols ${ssl_protocols};
   location / {
     proxy_ssl_session_reuse on;
 
